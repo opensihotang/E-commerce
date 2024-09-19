@@ -12,7 +12,7 @@ const Footer = () => {
         alignItems: "center",
       }}
     >
-      &copy : Arps {year}
+      Created at {year}
     </Box>
   );
 };
