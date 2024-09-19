@@ -1448,7 +1448,7 @@ const products = [
     category: "Heavy Car",
     image: [
       {
-        link: "https://app1.jadidalmagribi.com/images/C1-1701357888855-1703488247691.jpg",
+        link: "https://png.pngtree.com/png-clipart/20230414/original/pngtree-isolated-burger-on-transparent-background-png-image_9055072.png",
         _id: {
           $oid: "65892af7994dec19816b776e",
         },
@@ -4180,7 +4180,7 @@ const products = [
     category: "Laptop",
     image: [
       {
-        link: "https://app1.jadidalmagribi.com/images/3a72dd51-10e5-45f3-9d2b-b34e82c15be7-1701396350011-1703488271904.png",
+        link: "https://png.pngtree.com/png-clipart/20230414/original/pngtree-isolated-burger-on-transparent-background-png-image_9055072.png",
         _id: {
           $oid: "65892b0f994dec19816b7b19",
         },
@@ -5301,7 +5301,7 @@ const products = [
     category: "Fashion",
     image: [
       {
-        link: "https://app1.jadidalmagribi.com/images/5c55cba8-a016-43c7-b3ec-f5f75f7c37b0-1701780388411-1703488315388.jpg",
+        link: "https://png.pngtree.com/png-clipart/20230414/original/pngtree-isolated-burger-on-transparent-background-png-image_9055072.png",
         _id: {
           $oid: "65892b3b994dec19816b7ec5",
         },

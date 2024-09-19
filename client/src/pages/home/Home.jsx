@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Appsbar from "../../components/appbar/appbar";
-import Footer from "../../components/Footer/footer";
 import Products from "../product/Product";
+import Footer from "../../components/Footer/footer";
 
 const Home = () => {
   return (
@@ -12,10 +12,8 @@ const Home = () => {
           minHeight: 700,
           margin: 2,
           display: "flex",
-          alignItems: "center",
+          alignItems: "start",
           justifyContent: "center",
-          flexWrap: "wrap",
-          gap: 1,
         }}
       >
         <Products />
