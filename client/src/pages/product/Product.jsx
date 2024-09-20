@@ -46,12 +46,11 @@ const Products = () => {
     ...new Set(products.map((product) => product.category)),
   ].sort();
 
-  useEffect(() => {
-    const filtered = filteredProducts();
-    const startIndex = (currentPage - 1) * productPerPage;
-    const endIndex = startIndex + productPerPage;
-    setPaginatedProducts(filtered.slice(startIndex, endIndex));
-  }, [searchProduct, categoryProduct, currentPage]);
+  const productPerPage = 15;
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * productPerPage;
+  const endIndex = startIndex + productPerPage;
+  const paginatedProducts = filteredProduct.slice(startIndex, endIndex);
   const totalPage = Math.ceil(filteredProduct.length / productPerPage);
   const pageChanging = (event, page) => {
     setCurrentPage(page);
