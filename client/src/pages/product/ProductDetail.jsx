@@ -5,6 +5,7 @@ import StarSharpIcon from "@mui/icons-material/StarSharp";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { useState } from "react";
+import Order from "./Order";
 
 const createMarkUp = (html) => {
   return { __html: html };
@@ -20,7 +21,7 @@ const product = {
       link: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15.jpg",
     },
     {
-      link: "http://dummyimage.com/650x650.png/cc0000/ffffff",
+      link: "https://cubanvr.com/wp-content/uploads/2023/07/ai-image-generators.webp",
     },
     {
       link: "http://dummyimage.com/650x650.png/cc0000/ffffff",
@@ -147,7 +148,16 @@ const ProductDetail = () => {
             <Typography dangerouslySetInnerHTML={createMarkUp(product.desc)} />
           </Box>
         </Box>
-        <Box sx={{ display: "flex", flex: 1 }}>Counter</Box>
+        <Box
+          sx={{
+            display: "flex",
+            flex: 1,
+            padding: 2,
+            justifyContent: "center",
+          }}
+        >
+          <Order />
+        </Box>
       </Box>
       <Footer />
     </Box>
