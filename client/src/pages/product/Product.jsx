@@ -15,8 +15,10 @@ import {
   Select,
 } from "@mui/material";
 import StarSharpIcon from "@mui/icons-material/StarSharp";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
+  const navigate = useNavigate();
   const [searchProduct, setSearchProduct] = useState("");
   const [categoryProduct, setCategoryProduct] = useState("");
 
@@ -106,7 +108,15 @@ const Products = () => {
         }}
       >
         {paginatedProducts.map((product) => (
-          <Card key={product.name} sx={{ width: 210, minheight: 280 }}>
+          <Card
+            key={product.name}
+            sx={{
+              width: 210,
+              minheight: 280,
+              "&:hover": { cursor: "pointer" },
+            }}
+            onClick={() => navigate(`/${product.name}`)}
+          >
             <CardActionArea>
               <CardMedia
                 component="img"
