@@ -11,6 +11,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 
 const AppsBar = () => {
   const user = "admin";
@@ -24,6 +25,7 @@ const AppsBar = () => {
   const handleCloseMenu = (event) => {
     setOpen(null);
   };
+  const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -35,7 +37,10 @@ const AppsBar = () => {
               height: "60px",
               width: "120px",
               objectFit: "contain",
+              navigate: "/",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           />
           <Box sx={{ display: "flex", gap: 1 }}>
             <IconButton color="inherit">

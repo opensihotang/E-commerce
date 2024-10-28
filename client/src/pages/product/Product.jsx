@@ -11,11 +11,14 @@ import {
   Input,
   InputLabel,
   MenuItem,
+  Pagination,
   Select,
 } from "@mui/material";
 import StarSharpIcon from "@mui/icons-material/StarSharp";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
+  const navigate = useNavigate();
   const [searchProduct, setSearchProduct] = useState("");
   const [categoryProduct, setCategoryProduct] = useState("");
 
@@ -25,11 +28,7 @@ const Products = () => {
       setSearchProduct(value);
       console.log(value, "namee");
     } else if (name === "category") {
-      if (value === "all") {
-        setCategoryProduct("");
-      } else {
-        setCategoryProduct(value);
-      }
+      setCategoryProduct(value === "all" ? "" : value);
     }
   };
 
@@ -46,8 +45,18 @@ const Products = () => {
 
   const filteredProduct = products.filter(filtered);
   const categories = [
-    ...new Set(filteredProduct.map((product) => product.category)),
-  ];
+    ...new Set(products.map((product) => product.category)),
+  ].sort();
+
+  const productPerPage = 15;
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * productPerPage;
+  const endIndex = startIndex + productPerPage;
+  const paginatedProducts = filteredProduct.slice(startIndex, endIndex);
+  const totalPage = Math.ceil(filteredProduct.length / productPerPage);
+  const pageChanging = (event, page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <Box
@@ -72,9 +81,13 @@ const Products = () => {
           <InputLabel>Categories</InputLabel>
           <Select
             name="category"
-            value={searchProduct}
+            value={categoryProduct}
             onChange={searchfunction}
-            label="categories"
+            label="Categories"
+            renderValue={(selected) => {
+              if (selected === "all") return "All";
+              return selected; // Tampilkan nama kategori yang dipilih
+            }}
           >
             <MenuItem value="all">All</MenuItem>
             {categories.map((category, index) => (
@@ -94,8 +107,16 @@ const Products = () => {
           mt: 2,
         }}
       >
-        {filteredProduct.map((product) => (
-          <Card key={product.name} sx={{ width: 210, minheight: 280 }}>
+        {paginatedProducts.map((product) => (
+          <Card
+            key={product.name}
+            sx={{
+              width: 210,
+              minheight: 280,
+              "&:hover": { cursor: "pointer" },
+            }}
+            onClick={() => navigate(`/${product.name}`)}
+          >
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -126,6 +147,13 @@ const Products = () => {
             </CardContent>
           </Card>
         ))}
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
+        <Pagination
+          count={totalPage || 1}
+          page={currentPage}
+          onChange={pageChanging}
+        ></Pagination>
       </Box>
     </Box>
   );

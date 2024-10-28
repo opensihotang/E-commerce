@@ -4180,7 +4180,7 @@ const products = [
     category: "Laptop",
     image: [
       {
-        link: "https://png.pngtree.com/png-clipart/20230414/original/pngtree-isolated-burger-on-transparent-background-png-image_9055072.png",
+        link: "https://cubanvr.com/wp-content/uploads/2023/07/ai-image-generators.webp",
         _id: {
           $oid: "65892b0f994dec19816b7b19",
         },
