@@ -10,6 +10,7 @@ const SelectOption = () => {
   const [city, setCity] = useState("");
   const [courier, setCourier] = useState("");
   const [service, setService] = useState("");
+  const [address, setAddress] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -66,9 +67,9 @@ const SelectOption = () => {
           name="city"
           onChange={handleChange}
         >
-          <MenuItem value={"Jawa Barat"}>Jawa Barat</MenuItem>
-          <MenuItem value={"Jawa Tengah"}>Jawa Tengah</MenuItem>
-          <MenuItem value={"Jawa Timur"}>Jawa Timur</MenuItem>
+          <MenuItem value={"Bogor"}>Bogor</MenuItem>
+          <MenuItem value={"Depok"}>Depok</MenuItem>
+          <MenuItem value={"Surabaya"}>Surabaya</MenuItem>
         </Select>
       </FormControl>
 
@@ -82,9 +83,9 @@ const SelectOption = () => {
           name="courier"
           onChange={handleChange}
         >
-          <MenuItem value={"Jawa Barat"}>Jawa Barat</MenuItem>
-          <MenuItem value={"Jawa Tengah"}>Jawa Tengah</MenuItem>
-          <MenuItem value={"Jawa Timur"}>Jawa Timur</MenuItem>
+          <MenuItem value={"POS"}>POS</MenuItem>
+          <MenuItem value={"JNE"}>JNE</MenuItem>
+          <MenuItem value={"JNT"}>JNT</MenuItem>
         </Select>
       </FormControl>
 
@@ -98,11 +99,17 @@ const SelectOption = () => {
           name="service"
           onChange={handleChange}
         >
-          <MenuItem value={"Jawa Barat"}>Jawa Barat</MenuItem>
-          <MenuItem value={"Jawa Tengah"}>Jawa Tengah</MenuItem>
-          <MenuItem value={"Jawa Timur"}>Jawa Timur</MenuItem>
+          <MenuItem value={"layanan 1"}>layanan 1</MenuItem>
+          <MenuItem value={"layanan 2"}>layanan 2</MenuItem>
+          <MenuItem value={"layanan 3"}>layanan 3</MenuItem>
         </Select>
       </FormControl>
+      <textarea
+        placeholder="Masukkan alamat"
+        style={{ padding: "10px" }}
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+      />
     </Box>
   );
 };
