@@ -26,6 +26,8 @@ const AppsBar = () => {
     setOpen(null);
   };
   const navigate = useNavigate();
+
+  const toCart = () => navigate("/cart");
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -43,7 +45,7 @@ const AppsBar = () => {
             onClick={() => navigate("/")}
           />
           <Box sx={{ display: "flex", gap: 1 }}>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={toCart}>
               <ShoppingCartOutlinedIcon />
             </IconButton>
             {user === "user" ? (
