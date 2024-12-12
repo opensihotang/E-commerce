@@ -14,9 +14,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 
 const AppsBar = () => {
-  const user = "admin";
+  const user = "user";
   const adminMenu = ["Setting", "Dashboard", "Logout"];
-  const userMenu = ["Profile", "Orders", "Logout"];
+  const userMenu = [
+    { menu: "Profile", link: "/profile" },
+    { menu: "Orders", link: "/orders" },
+    { menu: "Logout", link: "/logout" },
+  ];
 
   const [open, setOpen] = useState(null);
   const handleOpenMenu = (event) => {
@@ -28,6 +32,11 @@ const AppsBar = () => {
   const navigate = useNavigate();
 
   const toCart = () => navigate("/cart");
+  const toPage = (link) => {
+    navigate(link);
+    handleCloseMenu();
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -68,9 +77,9 @@ const AppsBar = () => {
                   open={Boolean(open)}
                   onClose={handleCloseMenu}
                 >
-                  {userMenu.map((item) => (
-                    <MenuItem onClick={handleCloseMenu} key={item}>
-                      {item}
+                  {userMenu.map((item, index) => (
+                    <MenuItem onClick={() => toPage(item.link)} key={index}>
+                      {item.menu}
                     </MenuItem>
                   ))}
                 </Menu>
