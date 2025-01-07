@@ -20,7 +20,7 @@ const Order = () => {
         display: "flex",
         flexDirection: "column",
         gap: "10px",
-        height: "700px",
+        height: "650px",
         boxShadow: 4,
       }}
     >
@@ -115,7 +115,6 @@ const Order = () => {
           Rp. 3.000.000
         </Typography>
       </Box>
-      <Button variant="contained">Keranjang</Button>
       <Button variant="outlined">Beli</Button>
     </Box>
   );
