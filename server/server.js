@@ -1,8 +1,8 @@
 import "dotenv/config";
 import app from "./app.js";
-import connect from "../server/config/connection.js";
+import mongooConnetion from "../server/config/connection.js";
 
-connect();
+mongooConnetion();
 
 app.get("/", (req, res) => {
   res.send("OKKKK GAS");
