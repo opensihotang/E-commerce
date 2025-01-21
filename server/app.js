@@ -4,8 +4,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
-import userRouter from "./router/userRouter.js";
+import UserRoute from "./routes/UserRoute.js";
 import User from "./models/User.js";
+import productRoutes from "./routes/ProductsRoute.js";
 
 const app = express();
 app.use(cors());
@@ -22,7 +23,7 @@ app.use(
     cookie: {
       secure: false,
       httpOnly: true,
-      maxAge: 1,
+      maxAge: 3 * 24 * 60 * 60 * 1000,
     },
   })
 );
@@ -31,9 +32,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(User.createStrategy());
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use("/user", userRouter);
+app.use("/user", UserRoute);
+app.use("/products", productRoutes);
 
 export default app;

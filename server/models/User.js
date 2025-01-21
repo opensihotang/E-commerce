@@ -4,9 +4,9 @@ import findOrCreate from "mongoose-findorcreate";
 
 const userSchema = new Schema(
   {
-    name: { type: String, require: true },
-    username: { type: String, require: true },
-    phone: { type: Number, require: true },
+    name: { type: String, required: true },
+    username: { type: String, required: true },
+    phone: { type: Number, required: true },
     role: { type: String, default: "User" },
     password: { type: String },
     hash: { type: String },
@@ -14,7 +14,7 @@ const userSchema = new Schema(
     resetPasswordToken: String,
     resetPasswordExpress: String,
   },
-  { Timestamps: true }
+  { timestamps: true }
 );
 
 userSchema.plugin(pasportLocalMongose);
