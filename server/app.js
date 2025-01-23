@@ -6,7 +6,8 @@ import session from "express-session";
 import passport from "passport";
 import UserRoute from "./routes/UserRoute.js";
 import User from "./models/User.js";
-import productRoutes from "./routes/ProductsRoute.js";
+import ProductRoutes from "./routes/ProductsRoute.js";
+import CartRoute from "./routes/CartRoute.js";
 
 const app = express();
 app.use(cors());
@@ -37,6 +38,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use("/user", UserRoute);
-app.use("/products", productRoutes);
+app.use("/products", ProductRoutes);
+app.use("/cart", CartRoute);
 
 export default app;

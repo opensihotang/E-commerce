@@ -15,7 +15,6 @@ function generateToken(user) {
 //REGISTER
 router.post("/register", async (req, res) => {
   const { name, username, phone, role, password } = req.body;
-  console.log(req.body);
   try {
     User.register(
       {
@@ -35,7 +34,7 @@ router.post("/register", async (req, res) => {
       }
     );
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -43,7 +42,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     passport.authenticate("local", (err, user) => {
-      console.log(user);
       if (err) {
         return res.status(500).json({ error: err.message });
       } else if (!user) {
@@ -76,30 +74,56 @@ router.get(
   }
 );
 
+router.get("/users", authenticate(["admin"]), async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ users });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 router.put(
-  "/update-profile/:id",
+  "/update-profile",
   authenticate(["admin", "user"]),
   async (req, res, next) => {
     try {
+      const userId = req.user._id;
+      const { name, username, phone } = req.body;
+      const updatedUser = await User.findByIdAndUpdate(userId, req.body, {
+        new: true,
+        runValidators: true,
+      });
+      res.status(200).json({
+        message: `User With id : ${updatedUser.id} has been updated`,
+        updatedUser,
+      });
     } catch (error) {
       res.status(500).json({ error: error });
     }
   }
 );
 
-// router.delete(
-//   "/delete/:id",
-//   authenticate(["admin"]),
-//   async (req, res, next) => {
-//     try {
-//       const deletedUser = User.findById(req.params.id);
-//       res
-//         .status(200)
-//         .json({ message: `User with ${deletedUser.id} has been deleted` });
-//     } catch (error) {
-//       res.status(500).json({ error: error.message });
-//     }
-//   }
-// );
+router.delete(
+  "/delete/:id",
+  authenticate(["admin"]),
+  async (req, res, next) => {
+    try {
+      const deletedUserId = req.params.id;
+      const deletedUser = await User.findById(deletedUserId);
+      console.log(deletedUser);
+      if (!deletedUser) {
+        res.status(404).json({ message: "User Not Found" });
+      } else {
+        await User.deleteOne();
+        res
+          .status(200)
+          .json({ message: `User with id ${deletedUserId} has been deleted` });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+);
 
 export default router;
